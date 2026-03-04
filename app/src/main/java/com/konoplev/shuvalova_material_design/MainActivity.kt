@@ -124,3 +124,8 @@ fun StudentApp() {
 
     }
 }
+@Preview
+@Composable
+fun StudentDarkThemePreview() {
+    Shuvalova_Material_DesignTheme(darkTheme = true) {StudentApp()}
+}
