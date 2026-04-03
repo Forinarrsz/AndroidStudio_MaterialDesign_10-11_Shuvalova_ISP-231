@@ -106,12 +106,11 @@ fun StudentInformation(
     Column(modifier = modifier) {
         Text(
             text = stringResource(studentName),
-            modifier = Modifier.padding(top = dimensionResource(R.dimen.padding_small)),
-            style = MaterialTheme.typography.displayMedium
+            style = MaterialTheme.typography.displayMedium,
+            modifier = Modifier.padding(top = dimensionResource(R.dimen.padding_small))
         )
-
         Text(
-            text = stringResource(R.string.years_old,studentAge),
+            text = stringResource(R.string.years_old, studentAge),
             style = MaterialTheme.typography.bodyLarge
         )
     }
@@ -123,46 +122,46 @@ fun StudentItem(
     modifier: Modifier = Modifier
 ) {
     var expended by remember { mutableStateOf(false) }
-    Card(modifier = modifier){
-        Column (
-            modifier = modifier
+
+    Card(modifier = modifier) {
+        Column(
+            modifier = Modifier
                 .animateContentSize(
                     animationSpec = spring(
                         dampingRatio = Spring.DampingRatioNoBouncy,
                         stiffness = Spring.StiffnessMedium
                     )
                 )
-        ){
+        ) {
             Row(
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxWidth()
                     .padding(dimensionResource(R.dimen.padding_small))
             ) {
-
-
                 StudentIcon(student.imageResourceId)
                 StudentInformation(student.name, student.age)
                 Spacer(modifier = Modifier.weight(1f))
                 StudentItemButton(
                     expended = expended,
-                    onClick = { expended != expended }
+                    onClick = { expended = !expended }
+                )
+            }
+
+            if (expended) {
+                StudentDescription(
+                    student.description,
+                    modifier = Modifier.padding(
+                        start = dimensionResource(R.dimen.padding_medium),
+                        top = dimensionResource(R.dimen.padding_small),
+                        end = dimensionResource(R.dimen.padding_medium),
+                        bottom = dimensionResource(R.dimen.padding_medium)
+                    )
                 )
             }
         }
     }
-    if (expended) {
-        StudentDescription(
-            student.description,
-            modifier = Modifier.padding(
-                start = dimensionResource(R.dimen.padding_medium),
-                top = dimensionResource(R.dimen.padding_small),
-                end = dimensionResource(R.dimen.padding_medium),
-                bottom = dimensionResource(R.dimen.padding_medium)
-            )
-        )
-    }
-
 }
+
 
 @Composable
 fun StudentApp() {
@@ -243,6 +242,11 @@ fun StudentDescription(
     ) {
         Text(
             text = stringResource(R.string.about),
+            style = MaterialTheme.typography.labelLarge,
+            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+        )
+        Text(
+            text = stringResource(studentDescription),
             style = MaterialTheme.typography.bodyLarge
         )
     }
