@@ -29,7 +29,7 @@
 ### 4. Анимация
 - Реализована плавная анимация изменения размера карточки при развертывании (`animateContentSize`) с использованием пружинного эффекта (`spring`).
 
-## 🛠 Технологии
+## Технологии
 - **Язык**: Kotlin
 - **UI Framework**: Jetpack Compose
 - **Design System**: Material Design 3
